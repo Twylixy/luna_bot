@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "luna_bot"
+version = "0.1.0"
+description = "The Discord-bot for Dusked Ocean server."
+authors = ["Twylix <zemskov271@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+peewee = "^3.15.0"
+psycopg2 = "^2.9.3"
+py-cord = {git = "https://github.com/Pycord-Development/pycord"}
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+isort = "^5.10.1"
+jurigged = "^0.5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+line_length = 79
+
+[tool.black]
+skip-string-normalization = true
+exclude = '(\.git|\.venv|\.vscode)'
+include_trailing_comma = true

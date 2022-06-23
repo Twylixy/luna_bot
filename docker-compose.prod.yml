@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  bot:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.prod
+    container_name: bot
+    env_file: ./.env.production
+    networks:
+      - luna_network
+
+networks:
+  luna_network:
+    driver: bridge
+    name: luna_network
