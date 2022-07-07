@@ -1,9 +1,13 @@
 version: "3.9"
 services:
   bot:
-    build:
-      context: .
-      dockerfile: ./docker/Dockerfile.prod
+    # Build from Dockerfile
+    # Note: comment `image`
+    #
+    # build:
+    #   context: .
+    #   dockerfile: ./docker/Dockerfile.prod
+    image: twylix/luna_bot
     container_name: bot
     env_file: ./.env.production
     networks:
