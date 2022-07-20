@@ -7,13 +7,13 @@ from app.models.saved_message_model import SavedMessageModel
 
 
 class SayerCog(commands.Cog):
-    """Represent a `sayer` cog-module"""
+    """Represent a `sayer` cog-module."""
 
     def __init__(self, luna_instance: commands.Bot) -> None:
         """
-        Initialize a new `sayer` instance
+        Initialize a new `sayer` instance.
 
-        Params:
+        Args:
             luna_instance: discord.ext.commands.Bot
         """
         self.luna_instance = luna_instance
@@ -21,20 +21,22 @@ class SayerCog(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message) -> None:
         """
-        Handle a messages
+        Handle a messages.
 
-        Params:
+        Args:
             message: discord.Message
         """
         if self.luna_instance.user.mentioned_in(message):
+            # ignore E712, due to that is database query
             random_message = (
                 SavedMessageModel.select()
-                .where(SavedMessageModel.hidden == False)
+                .where(SavedMessageModel.hidden == False)  # noqa: E712
                 .order_by(peewee.fn.Random())
                 .limit(1)
             ).get()
 
-            return await message.reply(random_message.text)
+            await message.reply(random_message.text)
+            return
 
         analyzer = MessageAnalyzer(message)
 

@@ -1,7 +1,6 @@
 from typing import Awaitable, Optional, Tuple, Union
 
-import discord
-from discord import Embed, Interaction
+from discord import ButtonStyle, Embed, Interaction
 from discord.commands import ApplicationContext
 from discord.ui import Button, View
 
@@ -19,19 +18,24 @@ def get_infractor_view(
     infractor_settings: Optional[InfractorSettingsModel] = None,
 ) -> Tuple[View, Embed]:
     """
-    Create `infractor` view
+    Create `infractor` view.
 
-    Params:
+    Args:
         ctx: Union[ApplicationContext, Interaction]
         change_infractor_state_callback: Awaitable[Interaction]
         bad_messages_menu_callback: Awaitable[Interaction]
         link_filter_menu_callback: Awaitable[Interaction]
         spam_detector_menu_callback: Awaitable[Interaction]
         infractor_settings: InfractorSettingsModel
+
+    Returns:
+        Tuple[View, Embed]
     """
     if infractor_settings is None:
-        infractor_settings: InfractorSettingsModel = InfractorSettingsModel.get(
-            guild_id=ctx.guild.id,
+        infractor_settings: InfractorSettingsModel = (
+            InfractorSettingsModel.get(
+                guild_id=ctx.guild.id,
+            )
         )
 
     texted_infractor_settings = TextedInfractorSettings.get_texted_settings(
@@ -39,7 +43,7 @@ def get_infractor_view(
     )
 
     infractor_embed = (
-        discord.Embed(
+        Embed(
             title=f'{texted_infractor_settings.infractor_is_enabled} Infractor | Dashboard',
             description='They cannot confronts to empress',
             color=EMBED_DEFAULT_COLOR,
@@ -64,10 +68,10 @@ def get_infractor_view(
 
     if infractor_settings.infractor_is_enabled is True:
         change_infractor_state_button_label = 'Turn off'
-        change_infractor_state_button_style = discord.ButtonStyle.red
+        change_infractor_state_button_style = ButtonStyle.red
     else:
         change_infractor_state_button_label = 'Turn on'
-        change_infractor_state_button_style = discord.ButtonStyle.green
+        change_infractor_state_button_style = ButtonStyle.green
 
     change_infractor_state_button = Button(
         label=change_infractor_state_button_label,
@@ -75,17 +79,17 @@ def get_infractor_view(
     )
     bad_messages_button = Button(
         label='Bad Messages',
-        style=discord.ButtonStyle.gray,
+        style=ButtonStyle.gray,
         emoji='💬',
     )
     link_filter_button = Button(
         label='Link Filter',
-        style=discord.ButtonStyle.gray,
+        style=ButtonStyle.gray,
         emoji='🌐',
     )
     spam_detector_button = Button(
         label='Spam Detector',
-        style=discord.ButtonStyle.gray,
+        style=ButtonStyle.gray,
         emoji='🌊',
     )
 

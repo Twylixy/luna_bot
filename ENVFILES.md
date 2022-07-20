@@ -9,20 +9,20 @@ The **.env** configuration files for the project are separated into 2 files (dev
 Configurations for **python logging**\
 You can leave them empty.
 ```
-BOT_DEBUG_LEVEL - Debug level (string or int)
-BOT_DEBUG_FORMAT - Debug log format (string)
-BOT_DEBUG_DATEFMT - Debug date format (string)
-BOT_DEBUG_GUILDS_IDS - Guild ids for slash_commands (array[int])
+DEBUG_LEVEL - Debug level (string or int)
+DEBUG_FORMAT - Debug log format (string)
+DEBUG_DATEFMT - Debug date format (string)
 ```
 ### Bot
 Configurations for **bot**\
 There is only one required variable: BOT_TOKEN
 ```
-BOT_TOKEN - Discord bot token (string)
-BOT_COMMAND_PREFIX - Bot prefix (string)
-BOT_CASE_INSENSITIVE - Bot's commands insensivity (bool)
-BOT_OWNER_ID - Bot's owner id (int)
-BOT_STRIP_AFTER_PREFIX - Bot's strip after prefix (! command -> !command) (bool)
+TOKEN - Discord bot token (string)
+COMMAND_PREFIX - Bot prefix (string)
+CASE_INSENSITIVE - Bot's commands insensivity (bool)
+OWNER_ID - Bot's owner id (int)
+STRIP_AFTER_PREFIX - Bot's strip after prefix (! command -> !command) (bool)
+DEBUG_GUILDS_IDS - Debug guilds for slash_commands (array[int])
 ```
 ### Database
 Database configurations for bot.

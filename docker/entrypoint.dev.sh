@@ -1,6 +1,6 @@
 #!/bin/sh
 
 echo "Starting app..."
-python3 -m jurigged -v -m app
+python3 -m app
 
 exec "$@"

@@ -1,7 +1,6 @@
 from typing import Awaitable, Optional, Tuple, Union
 
-import discord
-from discord import Embed, Interaction
+from discord import ButtonStyle, Embed, Interaction
 from discord.commands.context import ApplicationContext
 from discord.ui import Button, View
 
@@ -18,18 +17,23 @@ def get_spam_detector_view(
     infractor_settings: Optional[InfractorSettingsModel] = None,
 ) -> Tuple[View, Embed]:
     """
-    Create `spam_detector` view
+    Create `spam_detector` view.
 
-    Params:
+    Args:
         ctx: Union[ApplicationContext, Interaction]
         change_spam_detector_state_callback: Awaitable[Interaction]
         configure_spam_detector_callback: Awaitable[Interaction]
         to_infractor_callback: Awaitable[Interaction]
         infractor_settings: InfractorSettingsModel
+
+    Returns:
+        Tuple[View, Embed]
     """
     if infractor_settings is None:
-        infractor_settings: InfractorSettingsModel = InfractorSettingsModel.get(
-            guild_id=ctx.guild.id,
+        infractor_settings: InfractorSettingsModel = (
+            InfractorSettingsModel.get(
+                guild_id=ctx.guild.id,
+            )
         )
 
     texted_infractor_settings = TextedInfractorSettings.get_texted_settings(
@@ -37,7 +41,7 @@ def get_spam_detector_view(
     )
 
     spam_detector_embed = (
-        discord.Embed(
+        Embed(
             title='🌊 Spam Detector Module',
             description='Firewall for spammers in your text channels',
             color=EMBED_DEFAULT_COLOR,
@@ -57,21 +61,24 @@ def get_spam_detector_view(
 
     if infractor_settings.spam_detector_is_enabled is True:
         change_spam_detector_state_button_label = 'Turn off'
-        change_spam_detector_state_button_style = discord.ButtonStyle.red
+        change_spam_detector_state_button_style = ButtonStyle.red
     else:
         change_spam_detector_state_button_label = 'Turn on'
-        change_spam_detector_state_button_style = discord.ButtonStyle.green
+        change_spam_detector_state_button_style = ButtonStyle.green
 
     change_spam_detector_state_button = Button(
         label=change_spam_detector_state_button_label,
         style=change_spam_detector_state_button_style,
     )
     configure_spam_detector_button = Button(
-        label='Configure', style=discord.ButtonStyle.gray
+        label='Configure',
+        style=ButtonStyle.gray,
     )
-    to_infractor_button = Button(label='Back', style=discord.ButtonStyle.gray)
+    to_infractor_button = Button(label='Back', style=ButtonStyle.gray)
 
-    change_spam_detector_state_button.callback = change_spam_detector_state_callback
+    change_spam_detector_state_button.callback = (
+        change_spam_detector_state_callback
+    )
     configure_spam_detector_button.callback = configure_spam_detector_callback
     to_infractor_button.callback = to_infractor_callback
 

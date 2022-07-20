@@ -24,7 +24,7 @@ RUN apk update
 RUN apk add postgresql-dev gcc libpq python3-dev musl-dev libffi-dev git
 RUN python -m pip install poetry 
 RUN python -m poetry config virtualenvs.create false
-RUN python -m poetry install
+RUN python -m poetry install --no-dev
 
 # Copy entrypoint.prod.sh
 RUN chmod +x  $PROJECT_HOME/docker/entrypoint.prod.sh

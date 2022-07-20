@@ -5,9 +5,14 @@ from app.models.guild_model import GuildModel
 
 
 class InfractorSettingsModel(BaseModel):
-    """Represents `infractor's` settings model"""
+    """Represents `infractor's` settings model."""
 
-    guild_id = peewee.ForeignKeyField(GuildModel, on_delete='CASCADE')
+    id = peewee.PrimaryKeyField()
+    guild_id = peewee.ForeignKeyField(
+        GuildModel,
+        to_field='guild_id',
+        on_delete='CASCADE',
+    )
     infractor_is_enabled = peewee.BooleanField(default=False)
     bad_words_is_enabled = peewee.BooleanField(default=False)
     bad_words_dictionary = peewee.TextField(null=True)

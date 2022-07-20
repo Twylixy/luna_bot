@@ -9,9 +9,9 @@ from app.views.spam_detector_view import get_spam_detector_view
 
 async def bad_messages_menu_callback(interaction: discord.Interaction) -> None:
     """
-    Callback for `bad_messages_menu` button
+    Button callback for `bad_messages_menu` click event.
 
-    Params:
+    Args:
         interaction: discord.Interaction
     """
     view, bad_messages_menu_embed = get_bad_words_view(
@@ -20,14 +20,19 @@ async def bad_messages_menu_callback(interaction: discord.Interaction) -> None:
         configure_bad_words_callback,
         to_infractor_callback,
     )
-    await interaction.response.edit_message(embed=bad_messages_menu_embed, view=view)
+    await interaction.response.edit_message(
+        embed=bad_messages_menu_embed,
+        view=view,
+    )
 
 
-async def change_bad_words_state_callback(interaction: discord.Interaction) -> None:
+async def change_bad_words_state_callback(
+    interaction: discord.Interaction,
+) -> None:
     """
-    Callback for `change_bad_words_state` button
+    Button callback for `change_bad_words_state` click event.
 
-    Params:
+    Args:
         interaction: discord.Interaction
     """
     infractor_settings: InfractorSettingsModel = InfractorSettingsModel.get(
@@ -57,23 +62,25 @@ async def change_bad_words_state_callback(interaction: discord.Interaction) -> N
     )
 
 
-async def configure_bad_words_callback(interaction: discord.Interaction) -> None:
+async def configure_bad_words_callback(
+    interaction: discord.Interaction,
+) -> None:
     """
-    Callback for `configure_bad_words` button
+    Button callback for `configure_bad_words` click event.
 
-    Params:
+    Args:
         interaction: discord.Interaction
     """
     await interaction.response.edit_message(
-        content='For `Bad Words` configuration use **[online-panel](https://luna.staypony.space/)**'
+        content='For `Bad Words` configuration use **[online-panel](https://luna.staypony.space/)**',
     )
 
 
 async def link_filter_menu_callback(interaction: discord.Interaction) -> None:
     """
-    Callback for `link_filter_menu` button
+    Button callback for `link_filter_menu` click event.
 
-    Params:
+    Args:
         interaction: discord.Interaction
     """
     view, link_filter_menu_embed = get_link_filter_view(
@@ -83,15 +90,19 @@ async def link_filter_menu_callback(interaction: discord.Interaction) -> None:
         to_infractor_callback,
     )
     await interaction.response.edit_message(
-        embed=link_filter_menu_embed, content='', view=view
+        embed=link_filter_menu_embed,
+        content='',
+        view=view,
     )
 
 
-async def change_link_filter_state_callback(interaction: discord.Interaction) -> None:
+async def change_link_filter_state_callback(
+    interaction: discord.Interaction,
+) -> None:
     """
-    Callback for `change_link_filter_state` button
+    Button callback for `change_link_filter_state` click event.
 
-    Params:
+    Args:
         interaction: discord.Interaction
     """
     infractor_settings: InfractorSettingsModel = InfractorSettingsModel.get(
@@ -121,23 +132,27 @@ async def change_link_filter_state_callback(interaction: discord.Interaction) ->
     )
 
 
-async def configure_link_filter_callback(interaction: discord.Interaction) -> None:
+async def configure_link_filter_callback(
+    interaction: discord.Interaction,
+) -> None:
     """
-    Callback for `configure_link_filter` button
+    Button callback for `configure_link_filter` click event.
 
-    Params:
+    Args:
         interaction: discord.Interaction
     """
     await interaction.response.edit_message(
-        content='For `Link Filter` configuration use **[online-panel](https://luna.staypony.space/)**'
+        content='For `Link Filter` configuration use **[online-panel](https://luna.staypony.space/)**',
     )
 
 
-async def spam_detector_menu_callback(interaction: discord.Interaction) -> None:
+async def spam_detector_menu_callback(
+    interaction: discord.Interaction,
+) -> None:
     """
-    Callback for `spam_detector_menu` button
+    Button callback for `spam_detector_menu` click event.
 
-    Params:
+    Args:
         interaction: discord.Interaction
     """
     view, spam_detector_embed = get_spam_detector_view(
@@ -147,15 +162,19 @@ async def spam_detector_menu_callback(interaction: discord.Interaction) -> None:
         to_infractor_callback,
     )
     await interaction.response.edit_message(
-        embed=spam_detector_embed, content='', view=view
+        embed=spam_detector_embed,
+        content='',
+        view=view,
     )
 
 
-async def change_spam_detector_state_callback(interaction: discord.Interaction) -> None:
+async def change_spam_detector_state_callback(
+    interaction: discord.Interaction,
+) -> None:
     """
-    Callback for `change_spam_detector` button
+    Button callback for `change_spam_detector` click event.
 
-    Params:
+    Args:
         interaction: discord.Interaction
     """
     infractor_settings: InfractorSettingsModel = InfractorSettingsModel.get(
@@ -185,23 +204,27 @@ async def change_spam_detector_state_callback(interaction: discord.Interaction) 
     )
 
 
-async def configure_spam_detector_callback(interaction: discord.Interaction) -> None:
+async def configure_spam_detector_callback(
+    interaction: discord.Interaction,
+) -> None:
     """
-    Callback for `configure_spam_detector` button
+    Button callback for `configure_spam_detector` click event.
 
-    Params:
+    Args:
         interaction: discord.Interaction
     """
     await interaction.response.edit_message(
-        content='For `Spam Detector` configuration use **[online-panel](https://luna.staypony.space/)**'
+        content='For `Spam Detector` configuration use **[online-panel](https://luna.staypony.space/)**',
     )
 
 
-async def change_infractor_state_callback(interaction: discord.Interaction) -> None:
+async def change_infractor_state_callback(
+    interaction: discord.Interaction,
+) -> None:
     """
-    Callback for `change_infractor_state` button
+    Button callback for `change_infractor_state` click event.
 
-    Params:
+    Args:
         interaction: discord.Interaction
     """
     infractor_settings: InfractorSettingsModel = InfractorSettingsModel.get(

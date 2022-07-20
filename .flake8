@@ -1,0 +1,17 @@
+[flake8]
+# D100 - ignore docstrings requirement in top of the modules
+# D105 - allow to leave magic methods without docstrings
+# D106 - ignore docstrings in nested classes
+# WPS305 - allow to use 'f' strings, but prefer to use 'str.format(...)'
+# WPS306 - drop "old python class format"
+# WPS348 - due to Peewee (ORM) usage, allow lines, which are stating with dot
+# TODO: remove following ignores
+#   E501 - temporarily disable line length violations
+ignore=D100, D105, D106, WPS305, WPS306, WPS348, E501
+
+# .venv/ - not contains python files
+# docker/ - not contains python files
+exclude=.venv/, docker/
+
+# Due to project structure, allow module members more than 7
+max-module-members=12

@@ -1,8 +1,5 @@
-.venv
-.vscode
-.env.dev
-.env.production
-__pycache__
-.pyc
+.venv/
+.vscode/
+__pycache__/
 
-shared/
+.env.*

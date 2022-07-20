@@ -1,7 +1,6 @@
 from typing import Awaitable, Optional, Tuple, Union
 
-import discord
-from discord import Embed, Interaction
+from discord import ButtonStyle, Embed, Interaction
 from discord.commands import ApplicationContext
 from discord.ui import Button, View
 
@@ -18,16 +17,18 @@ def get_bad_words_view(
     infractor_settings: Optional[InfractorSettingsModel] = None,
 ) -> Tuple[View, Embed]:
     """
-    Create `bad messages` view
+    Create `bad messages` view.
 
-    Params:
-        interaction: Union[ApplicationContext, Interaction]
+    Args:
+        ctx: Union[ApplicationContext, Interaction]
         change_bad_words_state_callback: Awaitable[Interaction]
         configure_bad_words_callback: Awaitable[Interaction]
         to_infractor_callback: Awaitable[Interaction]
         infractor_settings: Optional[InfractorSettingsModel]
-    """
 
+    Returns:
+        Tuple[View, Embed]
+    """
     if infractor_settings is None:
         infractor_settings = InfractorSettingsModel.get(
             guild_id=ctx.guild.id,
@@ -38,7 +39,7 @@ def get_bad_words_view(
     )
 
     bad_messages_menu_embed = (
-        discord.Embed(
+        Embed(
             title='💬 Bad Messages Module',
             description="Help's you to block bad words on your server",
             color=EMBED_DEFAULT_COLOR,
@@ -58,19 +59,20 @@ def get_bad_words_view(
 
     if infractor_settings.bad_words_is_enabled is True:
         change_bad_words_state_button_label = 'Turn off'
-        change_bad_words_state_button_style = discord.ButtonStyle.red
+        change_bad_words_state_button_style = ButtonStyle.red
     else:
         change_bad_words_state_button_label = 'Turn on'
-        change_bad_words_state_button_style = discord.ButtonStyle.green
+        change_bad_words_state_button_style = ButtonStyle.green
 
     change_bad_words_state_button = Button(
         label=change_bad_words_state_button_label,
         style=change_bad_words_state_button_style,
     )
     configure_bad_words_button = Button(
-        label='Configure', style=discord.ButtonStyle.gray
+        label='Configure',
+        style=ButtonStyle.gray,
     )
-    to_infractor_button = Button(label='Back', style=discord.ButtonStyle.gray)
+    to_infractor_button = Button(label='Back', style=ButtonStyle.gray)
 
     change_bad_words_state_button.callback = change_bad_words_state_callback
     configure_bad_words_button.callback = configure_bad_words_callback
